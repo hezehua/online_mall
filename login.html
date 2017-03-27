@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>登录页面</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+	</head>
+
+	<body>
+		<!--头部-->
+		<header class="headerBar">
+			<div class="logoBar login_logo">
+				<div class="comWidth">
+					<div class="logo fl">
+						<a href="" class="fl"><img src="img/index/logo.fw.png" alt="穆克商城" /></a>
+						<h3 class="welcome_tit">欢迎登录</h3>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!--正文-->
+		<form action="dologin.php" method="post">
+			<section class="login_cont comWidth">
+				<ul class="login">
+					<li class="li_title">邮箱/用户名/已验证手机</li>
+					<li><input type="text" name="username" id="username" value="" class="login_input user_icon"/></li>
+					<li class="li_title">密码</li>
+					<li><input type="password" name="password" id="password" value="" class="login_input lock"/></li>
+					<li class="li_title">验证码</li>
+					<li>
+						<div class="fl"><input type="text" name="testingCode" id="testingCode" value="" class="testing_input"/></div>
+						<div class="testing_picture fl"></div>
+					</li>
+					<li class="auto_login nf">
+						<input type="checkbox" name="" id="a1" class="login_checkbox"/><label for="a1">自动登录</label>
+						<input type="checkbox" name="" id="a2" class="login_checkbox"/><label for="a2">安全控件登录</label>
+						<a href="">忘记密码？</a>
+					</li>
+					<li><input type="submit" name="" id="" value="登录" class="login_submit"/></li>
+					<li class="link_web">使用合作网站登录：</li>
+					<li class="link_login"><a href="">QQ</a><i>|</i><a href="">网易</a><i>|</i><a href="">奇虎360</a><i>|</i><a href="">开心</a><i>|</i><a href="">豆瓣</a><i>|</i><a href="">更多&gt;</a></li>
+				</ul>
+				<a href="register.html" class="to_reg">免费注册&gt;&gt;</a>
+			</section>
+		</form>
+		
+		<div class="hr_100"></div>
+		<!--尾部-->
+		<footer>
+			<p><a href="">慕课简介</a><i>|</i><a href="">慕课公告</a><i>|</i><a href="">招纳贤士</a><i>|</i><a href="">联系我们</a><i>|</i><a href="">客服热线：400-675-1234</a></p>
+			<p>Copyright &copy; 2006 - 2014 慕课版权所有&nbsp;&nbsp;京ICP备09037834号&nbsp;&nbsp;京ICP证B1034-8373号&nbsp;&nbsp;某市公安局XX分局备案编号：123456789123</p>
+			<p class="footimg">
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+			</p>
+		</footer>
+	</body>
+
+</html>

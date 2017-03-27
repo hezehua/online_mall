@@ -1,0 +1,315 @@
+<?php
+	require_once 'include.php';
+	require_once 'user/userinc.php';
+	checkuserlogined();
+	$username="";
+	$password="";
+	if(!isset($_SESSION['username']) || !isset($_SESSION['password'])){
+		alertmes('请重新登录', 'login.php');
+	}else{
+		$username=$_SESSION['username'];
+		$password=$_SESSION['password'];
+	}
+	connect();
+	$sql="select * from shop_user where username='{$username}' and password='{$password}'";
+	$row=fetchone($sql);
+//	print_r($row);
+	$index=strpos($row['face'], '/');
+	$row['face']=substr($row['face'], $index+1,strlen($row['face']));
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			用户信息
+		</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+			}
+			
+			header{				
+				color: #FFF;
+				background-color: #1D7AD9;
+				margin-bottom: 20px;
+			}
+			#head{
+				width: 100%;
+				height: 100px;
+				text-align: center;;
+			}
+			#head span{
+				width: 200px;		
+				font-size: 50px;
+				/*border: 1px solid red;*/
+				margin:0 auto;
+				line-height: 100px;
+				/*margin-left: -100px;*/
+			}
+			#logout{
+				/*border: 1px solid red;*/
+				color: #ccc;
+				display: block;				
+				float: right;
+				line-height: 100px;
+				margin-right: 50px;
+			}
+			#main{
+				width: 90%;
+				margin: 0 auto;
+			}
+			#left{
+				width: 25%;
+				height: auto;
+				float: left;
+				/*border: 1px solid #ccc;*/
+			}
+			#img{
+				/*border: 1px solid red;*/
+				width: 100px;
+				height: 100px;
+				float: left;
+				border-radius: 50px;
+			}
+			#name{
+				font-size: 25px;
+				float: left;
+				margin-top:40px ;
+				margin-left:10px ;
+				font-weight: bold;
+			}
+			#myinfo ul{
+				margin-top: 50px;
+				width: 100%;
+				list-style: none;
+				float: left;
+				padding: 0;
+			}
+			#myinfo ul li{
+				border-bottom:1px solid #ccc ;
+				font-size: 20px;
+				padding: 25px;
+			}
+			#myinfo ul li a{
+				text-decoration: none;
+				color: #000;
+				font-weight: 800;
+			}
+			#myinfo ul li img{
+				float: right;
+				width: 30px;
+				height: 30px;
+				cursor: pointer;
+				display: none;
+			}
+			#myinfo ul li:hover img{
+				display: block;
+			}
+			#title{
+				font-size: 30px;
+				font-weight: bold;
+				margin: 20px auto;
+			}
+			#order{
+				width: 70%;
+				float: right;
+				/*border: 1px solid #ccc;*/
+			}
+			#state{
+				border: 1px solid #ccc;
+				float: left;
+				width: 100%;
+			}
+			#state ul{
+				padding: 0;
+				float: left;
+				width: 80%;
+				line-height: 42px;
+			}
+			#state ul li{
+				display: inline-block;
+				list-style: none;
+				float: left;
+				width: 10%;
+				text-align:center;
+				border-right: 1px solid #ccc;
+			}
+			#state ul li a{
+				display: block;
+				width: 100%;
+				height: 100%;
+				text-decoration: none;	
+				color: #000;
+			}
+			#ordernum{
+				float: right;
+				margin:10px;
+			}
+			#prev a,#next a{
+				display: inline-block;
+				border: 1px solid #ccc;
+				width: 15px;
+				text-align: center;	
+				text-decoration: none;			
+			}
+			#orderlist{
+				width: 100%;
+				height:auto;
+				padding-top: 10px;
+				border: 1px solid #ccc;
+				float: left;
+			}
+			#orderlist ul{
+				width: 100%;
+				list-style: none;
+				padding: 0;
+			}
+			.list{
+				width: 100%;
+				margin-bottom: 20px;
+				float: left;
+				border-bottom: 1px solid #000;
+			}
+			.list ul{
+				list-style: none;
+				padding: 0;
+			}
+			.list ul li{
+				width: 100%;
+				margin-bottom: 5px;
+				display: block;
+				text-align:left;
+				float: left;
+				/*border: 1px solid #000;*/
+			}
+			.ordername,.ordertime,.orderinfo{
+				text-align: left;
+				display:block;
+				/*border: 1px solid #ccc;*/				
+			}
+			.ordername .title,.ordertime .title,.orderinfo .title{
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>		
+		<header>
+			<div id="head">
+				<span>OnLine Mall</span>
+				<a href="user/useraction.php?act=logout" id="logout">退出</a>
+			</div>
+		</header>
+		<div id="main">
+			<div id='left'>			
+				<img id="img" src="<?php echo $row['face'];?>" />
+				<span id="name"><?php echo $username;?></span>
+				<div id="myinfo">
+					<ul>
+						<li>
+							<a href="#">我的资料</a><img src="img/index/edit.png" />
+						</li>
+						<li>
+							<a href="#">我的地址</a><img src="img/index/edit.png" />
+						</li>
+						<li>
+							<a href="#">我的详情</a><img src="img/index/edit.png" />
+						</li>
+						<li>
+							<a href="#">个人信息</a><img src="img/index/edit.png" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="right">
+				<div id="order">
+					<div id="title">
+						我的订单
+					</div>
+					<div id="state">
+						<ul>
+							<li><a href="#">未发货</a></li>
+							<li><a href="#">已发货</a></li>
+							<li><a href="#">已收货</a></li>
+						</ul>	
+						<div id="ordernum">
+							<span>共XX个订单</span>
+							<span id="prev"><a href="#"><</a></span>
+							<span id="next"><a href="#">></a></span>
+						</div>					  
+					</div>
+					<div id="orderlist">
+						<ul>
+							<li class="list">
+								<ul>
+									<li>
+										<div class="ordername">
+											<span class="title">订单名称:</span>
+											<span>【荣耀官方】Huawei/华为 荣耀畅玩4C 高性价比 4G智能安卓手机</span>
+										</div> 
+									</li>
+									<li>
+										<div class="ordertime">
+											<span class="title">下单时间</span>
+											<span></span>
+										</div>
+									</li>
+									<li>
+										<div class="orderinfo">
+											<span class="title">订单详情</span>
+											<span></span>
+										</div>
+									</li>
+								</ul>
+							</li><!-------------------------一个订单-------------------------->
+							<li class="list">
+								<ul>
+									<li>
+										<div class="ordername">
+											<span class="title">订单名称:</span>
+											<span>【荣耀官方】Huawei/华为 荣耀畅玩4C 高性价比 4G智能安卓手机</span>
+										</div> 
+									</li>
+									<li>
+										<div class="ordertime">
+											<span class="title">下单时间</span>
+											<span></span>
+										</div>
+									</li>
+									<li>
+										<div class="orderinfo">
+											<span class="title">订单详情</span>
+											<span></span>
+										</div>
+									</li>
+								</ul>
+							</li><!-------------------------一个订单-------------------------->
+							<li class="list">
+								<ul>
+									<li>
+										<div class="ordername">
+											<span class="title">订单名称:</span>
+											<span>【荣耀官方】Huawei/华为 荣耀畅玩4C 高性价比 4G智能安卓手机</span>
+										</div> 
+									</li>
+									<li>
+										<div class="ordertime">
+											<span class="title">下单时间</span>
+											<span></span>
+										</div>
+									</li>
+									<li>
+										<div class="orderinfo">
+											<span class="title">订单详情</span>
+											<span></span>
+										</div>
+									</li>
+								</ul>
+							</li><!-------------------------一个订单-------------------------->
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

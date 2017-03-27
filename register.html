@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>注册页面</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<style type="text/css">
+			.sex{
+				float: left;
+				width: 60%;
+				margin-left: 10%;
+			}
+			.head{
+				clear: both;
+				/*float: left;*/
+				width: 100%;
+				margin-left: -8%;
+			}
+			input[name='sex']{
+				margin: 10px;
+			}
+			input[name='face']{
+				margin-left: 10px;
+				border: 1px dashed #CCC;
+				width:250px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--头部-->
+		<header class="headerBar">
+			<div class="logoBar login_logo">
+				<div class="comWidth">
+					<div class="logo fl">
+						<a href="" class="fl"><img src="img/index/logo.fw.png" alt="穆克商城" /></a>
+						<h3 class="welcome_tit">欢迎注册</h3>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!--正文-->
+		<form action="admin/adminaction.php?act=adduser" method="post" enctype="multipart/form-data">
+			<section class="reg_cont comWidth">
+				<ul class="reg">
+					<li class="li_title"><span class="li_title_cont"><em>*</em>帐户名：</span><input type="text" name="username" id="username" value="" class="reg_input user_icon"/></li>
+					<li class="li_title"><span class="li_title_cont"><em>*</em>请设置密码：</span><input type="password" name="password" id="pwd" value="" class="reg_input lock"/></li>
+					<li class="li_title"><span class="li_title_cont"><em>*</em>请确认密码：</span><input type="password" name="enpwd" id="enpwd" value="" class="reg_input lock"/></li>
+					<li class="li_title"><em>*</em>邮箱：<input type="text" name="email" id="email" value="" class="reg_input lock"/></li>
+					<li class="li_title sex"><em>*</em>性&nbsp;别:<input type="radio"  name="sex" value="0" checked="checked" />男<input type="radio"  name="sex" value="1"/>女<input type="radio"  name="sex" value="2"/>保密</li>
+					<li class="li_title head">头&nbsp;像:<input type="file" name="face"  ><br /></li>
+					<li class="special_li"><input type="checkbox" name="user_rule" id="user_rule" value="" class="reg_checkbox"/><label>我已阅读并同意<a href="">《用户注册协议》</a></label></li>
+					<li><input type="submit" name="" id="" value="提交" class="reg_submit"/></li>
+				</ul>
+			</section>
+		</form>
+		
+		<div class="hr_100"></div>
+		<!--尾部-->
+		<footer>
+			<p><a href="">慕课简介</a><i>|</i><a href="">慕课公告</a><i>|</i><a href="">招纳贤士</a><i>|</i><a href="">联系我们</a><i>|</i><a href="">客服热线：400-675-1234</a></p>
+			<p>Copyright &copy; 2006 - 2014 慕课版权所有&nbsp;&nbsp;京ICP备09037834号&nbsp;&nbsp;京ICP证B1034-8373号&nbsp;&nbsp;某市公安局XX分局备案编号：123456789123</p>
+			<p class="footimg">
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+				<a href=""><img src="img/index/footer_01.fw.png" alt="" /></a>
+			</p>
+		</footer>
+	</body>
+
+</html>
